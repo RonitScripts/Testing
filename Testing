@@ -1,0 +1,29 @@
+local ball = Instance.new("Part")
+ball.Name = "BladeBall"
+ball.Anchored = true
+ball.Size = Vector3.new(1, 1, 1)
+ball.Position = game.Players.LocalPlayer.Character.HumanoidRootPart.Position
+
+local blade = Instance.new("Part")
+blade.Name = "Blade"
+blade.Anchored = true
+blade.Size = Vector3.new(1, 1, 1)
+blade.Position = game.Players.LocalPlayer.Character.HumanoidRootPart.Position
+
+local function spawnBall()
+ball:Clone().Parent = workspace
+end
+
+local function moveBlade()
+blade.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+end
+
+game.Players.LocalPlayer.InputBegan:Connect(function(input)
+if input.KeyCode == Enum.KeyCode.Space then
+spawnBall()
+end
+end)
+
+game.Players.LocalPlayer.CharacterAdded:Connect(function(char)
+moveBlade()
+end)
